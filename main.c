@@ -64,38 +64,38 @@ int main(void) {
 	for (;;) {
 		xbox_reset_watchdog();
 
-		pad_up = !bit_check(PINC, 7);
-		pad_down = !bit_check(PINB, 2);
-		pad_left = !bit_check(PINB, 0);
-		pad_right = !bit_check(PIND, 3);
-		pad_y = !bit_check(PIND, 2);
-		pad_b = !bit_check(PIND, 1);
-		pad_x = !bit_check(PIND, 0);
-		pad_a = !bit_check(PIND, 4);
-		pad_black =  !bit_check(PINC, 6);
+		pad_up = !bit_check(PINF, 7);
+		pad_down = !bit_check(PINF, 6);
+		pad_left = !bit_check(PINF, 5);
+		pad_right = !bit_check(PINF, 4);
+		pad_y = !bit_check(PIND, 0);
+		pad_b = !bit_check(PIND, 3);
+		pad_x = !bit_check(PIND, 1);
+		pad_a = !bit_check(PIND, 2);
+		pad_black =  !bit_check(PIND, 4);
 		pad_white =  !bit_check(PIND, 7);
-		pad_start =  !bit_check(PINE, 6);
-		pad_select =  !bit_check(PINB, 4);
-		pad_l3 =  !bit_check(PINB, 5);
-		pad_r3 =  !bit_check(PINB, 6);
-		pad_l = !bit_check(PINB, 7);
-		pad_r = !bit_check(PIND, 6);
+		pad_start =  !bit_check(PINB, 4);
+		pad_select =  !bit_check(PINB, 5);
+		pad_l3 =  0;
+		pad_r3 =  0;
+		pad_l = !bit_check(PINC, 6);
+		pad_r = !bit_check(PINE, 6);
 
 		pad_left_analog_x = pad_left_analog_y = pad_right_analog_x = pad_right_analog_y = 0x7F;
 
-		if(!bit_check(PINB, 1)) {
+		if(!bit_check(PINB, 7)) {
 			pad_left_analog_x = 0x00;
-		} else if(!bit_check(PINB, 3)) {
+		} else if(!bit_check(PINB, 6)) {
 			pad_left_analog_x = 0xFF;
 		}
 
-		if(!bit_check(PINF, 0)) {
+		if(!bit_check(PINC, 7)) {
 			pad_left_analog_y = 0x00;
-		} else if(!bit_check(PINF, 1)) {
+		} else if(!bit_check(PIND, 6)) {
 			pad_left_analog_y = 0xFF;
 		}
 
-		if(!bit_check(PINF, 4)) {
+/* 		if(!bit_check(PINF, 4)) {
 			pad_right_analog_x = 0x00;
 		} else if(!bit_check(PINF, 5)) {
 			pad_right_analog_x = 0xFF;
@@ -106,7 +106,7 @@ int main(void) {
 		} else if(!bit_check(PINF, 7)) {
 			pad_right_analog_y = 0xFF;
 		}
-
+ */
 		pad_up    ? bit_set(gamepad_state.digital_buttons_1, XBOX_DPAD_UP)    : bit_clear(gamepad_state.digital_buttons_1, XBOX_DPAD_UP);
 		pad_down  ? bit_set(gamepad_state.digital_buttons_1, XBOX_DPAD_DOWN)  : bit_clear(gamepad_state.digital_buttons_1, XBOX_DPAD_DOWN);
 		pad_left  ? bit_set(gamepad_state.digital_buttons_1, XBOX_DPAD_LEFT)  : bit_clear(gamepad_state.digital_buttons_1, XBOX_DPAD_LEFT);
